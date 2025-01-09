@@ -1,30 +1,26 @@
-local function bootstrap_pckr()
-	local pckr_path = vim.fn.stdpath("data") .. "/pckr/pckr.nvim"
-
-	if not (vim.uv or vim.loop).fs_stat(pckr_path) then
-		vim.fn.system({
-			'git',
-			'clone',
-			"--filter=blob:none",
-			'https://github.com/lewis6991/pckr.nvim',
-			pckr_path
-		})
-	end
-
-	vim.opt.rtp:prepend(pckr_path)
-end
-
-bootstrap_pckr()
-
-require('pckr').add {
-	'AbdelrahmanDwedar/awesome-nvim-colorschemes',
-	'ibhagwan/fzf-lua',
-	'wakatime/vim-wakatime',
-	'kdheepak/lazygit.nvim',
-	'github/copilot.vim',
+return {
+	{
+		'AbdelrahmanDwedar/awesome-nvim-colorschemes',
+	},
+	{
+		'ibhagwan/fzf-lua',
+	},
+	{
+		'wakatime/vim-wakatime',
+		event = 'CursorMoved',
+	},
+	{
+		'kdheepak/lazygit.nvim',
+		event = 'CursorMoved',
+	},
+	{
+		'github/copilot.vim',
+		event = 'CursorMoved',
+	},
 	{
 		'folke/trouble.nvim',
-		config = function ()
+		event = 'CursorMoved',
+		config = function()
 			require('trouble').setup {}
 		end
 	},
@@ -45,17 +41,20 @@ require('pckr').add {
 	},
 	{
 		"akinsho/toggleterm.nvim",
+		event = 'CursorMoved',
 		tag = '*',
 		config = function()
 			require("toggleterm").setup()
 		end
 	},
 	{
-		'nvim-tree/nvim-tree.lua',
-		requires = { 'nvim-tree/nvim-web-devicons' },
-		config = function()
-			require('nvim-tree').setup {}
-		end
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons",
+			"MunifTanjim/nui.nvim",
+		}
 	},
 	{
 		'folke/which-key.nvim',
@@ -65,16 +64,24 @@ require('pckr').add {
 	},
 	{
 		'olimorris/codecompanion.nvim',
+		event = 'CursorMoved',
 		config = function()
 			require("codecompanion").setup()
 		end,
-		requires = {
+		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
 		}
 	},
 	{
+		"nvim-treesitter/nvim-treesitter",
+		config = function ()
+			require('configs.treesitter');
+		end
+	},
+	{
 		'danymat/neogen',
+		event = 'CursorMoved',
 		config = function()
 			require('neogen').setup {}
 		end
@@ -92,14 +99,9 @@ require('pckr').add {
 		end
 	},
 	{
-		'nvim-treesitter/nvim-treesitter',
-		config = function()
-			require('configs.treesitter')
-		end
-	},
-	{
 		'neovim/nvim-lspconfig',
-		requires = { 'williamboman/mason.nvim', { 'saghen/blink.cmp', branch = "release" }, 'rafamadriz/friendly-snippets' },
+		event = 'CursorMoved',
+		dependencies = { 'williamboman/mason.nvim', { 'saghen/blink.cmp', branch = "release" }, 'rafamadriz/friendly-snippets' },
 		config = function()
 			require('configs.lspconfig')
 		end

@@ -8,7 +8,7 @@ require('blink.cmp').setup {
 		preset = 'none',
 
 		['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-		['<C-e>'] = { 'hide', 'fallback' },
+		['<Esc>'] = { 'hide', 'fallback' },
 
 		['<Tab>'] = {
 			function(cmp)
