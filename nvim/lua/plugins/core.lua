@@ -4,24 +4,34 @@ return {
 	},
 	{
 		'ibhagwan/fzf-lua',
+		event = 'VeryLazy',
 	},
 	{
 		'wakatime/vim-wakatime',
-		event = 'CursorMoved',
+		event = 'VeryLazy',
 	},
 	{
 		'kdheepak/lazygit.nvim',
-		event = 'CursorMoved',
+		event = 'VeryLazy',
 	},
 	{
 		'github/copilot.vim',
-		event = 'CursorMoved',
+		event = 'VeryLazy',
 	},
 	{
 		'folke/trouble.nvim',
-		event = 'CursorMoved',
+		event = 'VeryLazy',
 		config = function()
 			require('trouble').setup {}
+		end
+	},
+	{
+		'rachartier/tiny-inline-diagnostic.nvim',
+		event = 'VeryLazy',
+		priority = 1000, -- needs to be loaded in first
+		config = function()
+			require('tiny-inline-diagnostic').setup()
+			vim.diagnostic.config({ virtual_text = false })
 		end
 	},
 	{
@@ -40,22 +50,23 @@ return {
 		end
 	},
 	{
-		"akinsho/toggleterm.nvim",
-		event = 'CursorMoved',
+		'akinsho/toggleterm.nvim',
+		event = 'VeryLazy',
 		tag = '*',
 		config = function()
-			require("toggleterm").setup()
+			require('toggleterm').setup()
 		end
 	},
 	{
-		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v3.x",
+		'nvim-neo-tree/neo-tree.nvim',
+		branch = 'v3.x',
+		event = 'VeryLazy',
 		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-web-devicons",
-			"MunifTanjim/nui.nvim",
+			'nvim-lua/plenary.nvim',
+			'nvim-tree/nvim-web-devicons',
+			'MunifTanjim/nui.nvim',
 		},
-		config = function ()
+		config = function()
 			require('configs.neotree')
 		end
 	},
@@ -67,44 +78,61 @@ return {
 	},
 	{
 		'olimorris/codecompanion.nvim',
-		event = 'CursorMoved',
+		event = 'VeryLazy',
 		config = function()
-			require("codecompanion").setup()
+			require('codecompanion').setup()
 		end,
 		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
+			'nvim-lua/plenary.nvim',
+			'nvim-treesitter/nvim-treesitter',
 		}
 	},
 	{
-		"nvim-treesitter/nvim-treesitter",
-		config = function ()
+		'nvim-treesitter/nvim-treesitter',
+		event = 'VeryLazy',
+		config = function()
 			require('configs.treesitter');
 		end
 	},
 	{
 		'danymat/neogen',
-		event = 'CursorMoved',
+		event = 'VeryLazy',
 		config = function()
 			require('neogen').setup {}
 		end
 	},
 	{
 		'numToStr/Comment.nvim',
+		event = 'VeryLazy',
 		config = function()
 			require('Comment').setup {}
 		end
 	},
 	{
 		'windwp/nvim-autopairs',
+		event = 'VeryLazy',
 		config = function()
 			require('nvim-autopairs').setup {}
 		end
 	},
 	{
 		'neovim/nvim-lspconfig',
-		event = 'CursorMoved',
-		dependencies = { 'williamboman/mason.nvim', { 'saghen/blink.cmp', branch = "release" }, 'rafamadriz/friendly-snippets' },
+		event = 'VeryLazy',
+		dependencies = {
+			{
+				'williamboman/mason.nvim',
+				event = 'VeryLazy',
+			},
+			{
+				'saghen/blink.cmp',
+				branch = 'release',
+				event = 'VeryLazy',
+			},
+			{
+				'rafamadriz/friendly-snippets',
+				event = 'VeryLazy',
+			}
+		},
 		config = function()
 			require('configs.lspconfig')
 		end
