@@ -1,10 +1,17 @@
 return {
 	'AbdelrahmanDwedar/awesome-nvim-colorschemes',
 	{
-		'j-hui/fidget.nvim',
+		'lewis6991/gitsigns.nvim',
 		event = 'VeryLazy',
 		config = function ()
-			require('fidget').setup{}
+			require('configs.gitsigns')
+		end
+	},
+	{
+		'j-hui/fidget.nvim',
+		event = 'VeryLazy',
+		config = function()
+			require('fidget').setup {}
 		end
 	},
 	{
