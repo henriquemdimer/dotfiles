@@ -1,6 +1,11 @@
 return {
+	'AbdelrahmanDwedar/awesome-nvim-colorschemes',
 	{
-		'AbdelrahmanDwedar/awesome-nvim-colorschemes',
+		'j-hui/fidget.nvim',
+		event = 'VeryLazy',
+		config = function ()
+			require('fidget').setup{}
+		end
 	},
 	{
 		'ibhagwan/fzf-lua',
