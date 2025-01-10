@@ -3,7 +3,7 @@ return {
 	{
 		'lewis6991/gitsigns.nvim',
 		event = 'VeryLazy',
-		config = function ()
+		config = function()
 			require('configs.gitsigns')
 		end
 	},
@@ -12,6 +12,20 @@ return {
 		event = 'VeryLazy',
 		config = function()
 			require('fidget').setup {}
+		end
+	},
+	{
+		"kawre/leetcode.nvim",
+		event = 'VeryLazy',
+		build = ":TSUpdate html", -- if you have `nvim-treesitter` installed
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+			-- "ibhagwan/fzf-lua",
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+		},
+		config = function()
+			require('leetcode').setup {}
 		end
 	},
 	{
