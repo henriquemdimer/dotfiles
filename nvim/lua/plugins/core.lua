@@ -13,7 +13,7 @@ return {
 		config = function()
 			local wilder = require('wilder')
 
-			wilder.setup{ modes = { ':', '/', '?' } }
+			wilder.setup { modes = { ':', '/', '?' } }
 			wilder.set_option('renderer', wilder.popupmenu_renderer(
 				wilder.popupmenu_border_theme({
 					highlights = {
@@ -23,6 +23,13 @@ return {
 					left = { ' ', wilder.popupmenu_devicons() }
 				})
 			))
+		end
+	},
+	{
+		'folke/todo-comments.nvim',
+		event = 'VeryLazy',
+		config = function()
+			require('todo-comments').setup {}
 		end
 	},
 	{
@@ -94,7 +101,6 @@ return {
 	{
 		'akinsho/toggleterm.nvim',
 		event = 'VeryLazy',
-		tag = '*',
 		config = function()
 			require('toggleterm').setup()
 		end
