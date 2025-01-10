@@ -54,7 +54,7 @@ require('blink.cmp').setup {
 	},
 }
 
-local servers = { 'lua_ls', 'ts_ls', 'biome' }
+local servers = { 'lua_ls', 'denols', 'biome' }
 local capabilities = require('blink.cmp').get_lsp_capabilities()
 
 for _, server in pairs(servers) do
