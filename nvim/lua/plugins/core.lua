@@ -8,6 +8,24 @@ return {
 		end
 	},
 	{
+		'gelguy/wilder.nvim',
+		event = 'CmdlineEnter',
+		config = function()
+			local wilder = require('wilder')
+
+			wilder.setup{ modes = { ':', '/', '?' } }
+			wilder.set_option('renderer', wilder.popupmenu_renderer(
+				wilder.popupmenu_border_theme({
+					highlights = {
+						border = 'Normal',
+					},
+					border = 'rounded',
+					left = { ' ', wilder.popupmenu_devicons() }
+				})
+			))
+		end
+	},
+	{
 		'j-hui/fidget.nvim',
 		event = 'VeryLazy',
 		config = function()
@@ -17,10 +35,8 @@ return {
 	{
 		"kawre/leetcode.nvim",
 		event = 'VeryLazy',
-		build = ":TSUpdate html", -- if you have `nvim-treesitter` installed
 		dependencies = {
-			"nvim-telescope/telescope.nvim",
-			-- "ibhagwan/fzf-lua",
+			"ibhagwan/fzf-lua",
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
 		},
