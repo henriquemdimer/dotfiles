@@ -38,6 +38,6 @@ vim.api.nvim_create_autocmd("UIEnter", {
     callback = function()
 		vim.cmd[[syntax on]]
 		vim.o.termguicolors = true
-		vim.cmd[[colorscheme tokyonight]]
+		vim.cmd[[colorscheme carbonfox]]
     end,
 })

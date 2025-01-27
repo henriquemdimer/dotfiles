@@ -63,10 +63,10 @@ return {
 		'kdheepak/lazygit.nvim',
 		event = 'VeryLazy',
 	},
-	{
-		'github/copilot.vim',
-		event = 'VeryLazy',
-	},
+	-- {
+	-- 	'github/copilot.vim',
+	-- 	event = 'VeryLazy',
+	-- },
 	{
 		'folke/trouble.nvim',
 		event = 'VeryLazy',
@@ -129,7 +129,31 @@ return {
 		'olimorris/codecompanion.nvim',
 		event = 'VeryLazy',
 		config = function()
-			require('codecompanion').setup()
+			require("codecompanion").setup({
+				adapters = {
+					openai = function()
+						return require("codecompanion.adapters").extend("openai", {
+							env = {
+								api_key =
+								"",
+							},
+							schema = {
+								model = {
+									default = "gpt-4o"
+								}
+							}
+						})
+					end,
+				},
+				strategies = {
+					chat = {
+						adapter = "openai",
+					},
+					inline = {
+						adapter = "openai",
+					},
+				},
+			})
 		end,
 		dependencies = {
 			'nvim-lua/plenary.nvim',

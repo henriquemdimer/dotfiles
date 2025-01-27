@@ -8,11 +8,11 @@ require('blink.cmp').setup {
 		preset = 'none',
 
 		['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-		['<C-Tab>'] = { 'hide', 'fallback' },
+		['<C-z>'] = { 'hide', 'fallback' },
 
 		['<Tab>'] = {
 			function(cmp)
-				if cmp.snippet_active() then
+				if require('blink.cmp.completion.windows.menu').win:is_open() == false then
 					return cmp.snippet_forward()
 				else
 					return cmp.select_next()
@@ -23,7 +23,7 @@ require('blink.cmp').setup {
 		},
 		['<S-Tab>'] = {
 			function(cmp)
-				if cmp.snippet_active() then
+				if require('blink.cmp.completion.windows.menu').win:is_open() == false then
 					return cmp.snippet_backward()
 				else
 					return cmp.select_prev()
@@ -54,7 +54,7 @@ require('blink.cmp').setup {
 	},
 }
 
-local servers = { 'lua_ls', 'denols', 'biome' }
+local servers = { 'lua_ls', 'denols', 'biome', 'gopls', 'vimls', 'rust_analyzer', 'jsonls', 'zls', 'ts_ls', 'clangd', 'gopls' }
 local capabilities = require('blink.cmp').get_lsp_capabilities()
 
 for _, server in pairs(servers) do
