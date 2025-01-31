@@ -1,64 +1,12 @@
 local lspconfig = require('lspconfig')
 require('mason').setup {}
-require('blink.cmp').setup {
-	completion = {
-		documentation = { auto_show = false, auto_show_delay_ms = 500 },
-	},
-	keymap = {
-		preset = 'none',
+require('mason-lspconfig').setup {}
 
-		['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-		['<C-z>'] = { 'hide', 'fallback' },
-
-		['<Tab>'] = {
-			function(cmp)
-				if require('blink.cmp.completion.windows.menu').win:is_open() == false then
-					return cmp.snippet_forward()
-				else
-					return cmp.select_next()
-				end
-			end,
-			'snippet_forward',
-			'fallback'
-		},
-		['<S-Tab>'] = {
-			function(cmp)
-				if require('blink.cmp.completion.windows.menu').win:is_open() == false then
-					return cmp.snippet_backward()
-				else
-					return cmp.select_prev()
-				end
-			end,
-			'snippet_forward',
-			'fallback'
-		},
-
-		['<Up>'] = { 'select_prev', 'fallback' },
-		['<Down>'] = { 'select_next', 'fallback' },
-		['<C-p>'] = { 'select_prev', 'fallback' },
-		['<C-n>'] = { 'select_next', 'fallback' },
-
-		['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
-		['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
-
-		['<CR>'] = { 'accept', 'fallback' }
-	},
-	signature = {
-		enabled = true
-	},
-	sources = {
-		-- Remove 'buffer' if you don't want text completions, by default it's only enabled when LSP returns no items
-		default = { 'lsp', 'path', 'snippets', 'buffer' },
-		-- Disable cmdline completions
-		cmdline = {},
-	},
+require("mason-lspconfig").setup_handlers {
+	-- The first entry (without a key) will be the default handler
+	-- and will be called for each installed server that doesn't have
+	-- a dedicated handler.
+	function (server_name) -- default handler (optional)
+		require("lspconfig")[server_name].setup {}
+	end,
 }
-
-local servers = { 'lua_ls', 'denols', 'biome', 'gopls', 'vimls', 'rust_analyzer', 'jsonls', 'zls', 'ts_ls', 'clangd', 'gopls' }
-local capabilities = require('blink.cmp').get_lsp_capabilities()
-
-for _, server in pairs(servers) do
-	lspconfig[server].setup {
-		capabilities = capabilities
-	}
-end
