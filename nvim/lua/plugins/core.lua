@@ -8,24 +8,6 @@ return {
 		end
 	},
 	{
-		'gelguy/wilder.nvim',
-		event = 'CmdlineEnter',
-		config = function()
-			local wilder = require('wilder')
-
-			wilder.setup { modes = { ':', '/', '?' } }
-			wilder.set_option('renderer', wilder.popupmenu_renderer(
-				wilder.popupmenu_border_theme({
-					highlights = {
-						border = 'Normal',
-					},
-					border = 'rounded',
-					left = { ' ', wilder.popupmenu_devicons() }
-				})
-			))
-		end
-	},
-	{
 		'folke/todo-comments.nvim',
 		event = 'VeryLazy',
 		config = function()
@@ -55,31 +37,20 @@ return {
 		'ibhagwan/fzf-lua',
 		event = 'VeryLazy',
 	},
-	{
-		'wakatime/vim-wakatime',
-		event = 'VeryLazy',
-	},
-	{
-		'kdheepak/lazygit.nvim',
-		event = 'VeryLazy',
-	},
 	-- {
-	-- 	'github/copilot.vim',
+	-- 	'wakatime/vim-wakatime',
 	-- 	event = 'VeryLazy',
 	-- },
 	{
-		'folke/trouble.nvim',
+		'kdheepak/lazygit.nvim',
 		event = 'VeryLazy',
-		config = function()
-			require('trouble').setup {}
-		end
 	},
 	{
 		'rachartier/tiny-inline-diagnostic.nvim',
 		event = 'VeryLazy',
 		priority = 1000, -- needs to be loaded in first
 		config = function()
-			require('tiny-inline-diagnostic').setup()
+			require('tiny-inline-diagnostic').setup {}
 			vim.diagnostic.config({ virtual_text = false })
 		end
 	},
@@ -168,20 +139,6 @@ return {
 		end
 	},
 	{
-		'danymat/neogen',
-		event = 'VeryLazy',
-		config = function()
-			require('neogen').setup {}
-		end
-	},
-	{
-		'numToStr/Comment.nvim',
-		event = 'VeryLazy',
-		config = function()
-			require('Comment').setup {}
-		end
-	},
-	{
 		'windwp/nvim-autopairs',
 		event = 'VeryLazy',
 		config = function()
@@ -198,7 +155,7 @@ return {
 			},
 			{
 				'saghen/blink.cmp',
-				branch = 'release',
+				build = "cargo build --release",
 				event = 'VeryLazy',
 			},
 			{
