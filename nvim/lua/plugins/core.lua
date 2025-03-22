@@ -1,5 +1,13 @@
 return {
 	{
+		'lewis6991/gitsigns.nvim',
+		event = "VeryLazy",
+		lazy = true,
+		config = function ()
+			require('configs.gitsigns')
+		end
+	},
+	{
 		'ms-jpq/chadtree',
 		branch = 'chad',
 		build = 'python4 -m chadtree deps',
