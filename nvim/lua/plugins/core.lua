@@ -19,7 +19,13 @@ return {
 		"ibhagwan/fzf-lua",
 		event = "VeryLazy",
 		lazy = true,
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		dependencies = {
+			{
+				"nvim-tree/nvim-web-devicons",
+				event = "VeryLazy",
+				lazy = true
+			}
+		},
 		opts = {}
 	}
 }

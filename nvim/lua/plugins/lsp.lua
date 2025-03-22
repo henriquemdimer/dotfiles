@@ -1,4 +1,5 @@
 return {
+	'neovim/nvim-lspconfig',
 	{
 		'sontungexpt/better-diagnostic-virtual-text',
 		event = "VeryLazy",
@@ -17,8 +18,16 @@ return {
 		end
 	},
 	{
-		'neovim/nvim-lspconfig',
-		dependencies = { 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim' },
+		'williamboman/mason.nvim',
+		dependencies = {
+			{
+				'williamboman/mason-lspconfig.nvim',
+				event = "VeryLazy",
+				lazy = true
+			}
+		},
+		event = "VeryLazy",
+		lazy = true,
 		config = function()
 			require('configs.lspconfig')
 		end
@@ -26,7 +35,13 @@ return {
 	{
 		'saghen/blink.cmp',
 		-- optional: provides snippets for the snippet source
-		dependencies = { 'rafamadriz/friendly-snippets' },
+		dependencies = {
+			{
+				'rafamadriz/friendly-snippets',
+				event = "VeryLazy",
+				lazy = true
+			}
+		},
 		event = "VeryLazy",
 		lazy = true,
 
