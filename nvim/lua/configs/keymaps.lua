@@ -1,5 +1,6 @@
-vim.keymap.set("n", "<leader>e", ":CHADopen<CR>", { desc = "Open file tree" })
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Enter normal mode while in terminal" })
+vim.keymap.set("n", "<leader>e", "<CMD>Yazi<CR>", { desc = "Open file tree" })
+vim.keymap.set("n", "<leader>cw", "<CMD>Yazi cwd<CR>", { desc = "Open file tree at cwd" })
 
 -- Fuzzy finder
 vim.keymap.set("n", "<leader>ff", ":FzfLua files<CR>", { desc = "Fuzzy find files" })
