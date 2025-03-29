@@ -1,5 +1,9 @@
 return {
 	{
+		'vyfor/cord.nvim',
+		build = ':Cord update',
+	},
+	{
 		'lewis6991/gitsigns.nvim',
 		event = "VeryLazy",
 		lazy = true,

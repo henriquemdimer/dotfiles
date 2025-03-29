@@ -13,13 +13,13 @@ require("mason-lspconfig").setup_handlers {
 	end,
 	-- Next, you can provide a dedicated handler for specific servers.
 	-- For example, a handler override for the `rust_analyzer`:
-	["ts_ls"] = function ()
-		require("lspconfig").ts_ls.setup {
+	["vtsls"] = function ()
+		require("lspconfig").vtsls.setup {
 			init_options = {
 				preferences = {
 					includeCompletionsForModuleExports = false
 				}
 			}
 		}
-	end
+	end,
 }
