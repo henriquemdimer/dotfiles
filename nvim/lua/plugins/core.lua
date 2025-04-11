@@ -1,7 +1,39 @@
 return {
 	{
+	    	"kawre/leetcode.nvim",
+		event = "VeryLazy",
+		lazy = true,
+	    	build = ":TSUpdate html", -- if you have `nvim-treesitter` installed
+	    	dependencies = {
+			"ibhagwan/fzf-lua",
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+	    	},
+	    	opts = {},
+	},
+	{
+		"mistweaverco/kulala.nvim",
+		ft = { "http", "rest" },
+		opts = {
+			global_keymaps = {
+				["Send request"] = {
+					"<leader>Rs",
+					function() require("kulala").run() end
+				},
+				["Send all requests"] = {
+					"<leader>Ra",
+					function() require("kulala").run_all() end
+				}
+			}
+		},
+		event = "VeryLazy",
+		lazy = true
+	},
+	{
 		'vyfor/cord.nvim',
 		build = ':Cord update',
+		event = "VeryLazy",
+		lazy = true
 	},
 	{
 		'lewis6991/gitsigns.nvim',

@@ -1,6 +1,14 @@
 return {
 	'neovim/nvim-lspconfig',
 	{
+		'nvim-treesitter/nvim-treesitter',
+		event = "VeryLazy",
+		lazy = true,
+		config = function()
+			require('configs.treesitter')
+		end
+	},
+	{
 		'sontungexpt/better-diagnostic-virtual-text',
 		event = "VeryLazy",
 		lazy = true,
